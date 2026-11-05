@@ -1,0 +1,17 @@
+name: Sync to Hugging Face Hub
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: huggingface/hub-sync@v0.3.0
+        with:
+          github_repo_id: gp6867/remove-bg
+          huggingface_repo_id: samrathacker/remove-bg
+          hf_token: ${{ secrets.HF_TOKEN }}
+          space_sdk: gradio
